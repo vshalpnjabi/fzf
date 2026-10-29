@@ -143,7 +143,9 @@ func (m *Matcher) Loop() {
 			if result.cacheable() {
 				m.mergerCache[patternString] = result
 			}
-			result.merger.final = request.final
+			if result.merger.final != request.final {
+				result.merger.final = request.final
+			}
 			m.eventBox.Set(EvtSearchFin, result)
 		}
 	}
